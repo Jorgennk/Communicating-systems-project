@@ -1,8 +1,8 @@
 BROKER = "mqtt20.iik.ntnu.no"
 PORT = 1883
 TOPIC = "team02"
-join_TOPIC = "join"
-queue_TOPIC = "queue"
-help_TOPIC = "help"
-update_topic = "update"
 
+JOIN_TOPIC = "join"
+QUEUE_TOPIC = "queue"
+HELP_TOPIC = "help"
+UPDATE_TOPIC = "update"
