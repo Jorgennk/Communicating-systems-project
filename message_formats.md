@@ -29,3 +29,27 @@
 # Session join failed: Server -> Student
 
 {"msg": "session_join_failed", "error_message": <error_message>, "group_name": <group_name>}
+
+
+
+# Request help: Student -> Server
+
+{"msg": "request_help", "group_name": <group_name>, "question": <question>}
+
+# Provide help: Teacher -> Server
+
+{"msg": "provide_help", "ta_name": <ta_name>, "group_name": <group_name>}
+
+# Provide queue update: Serer -> Server / Student
+
+{"msg": "queue_update", "queue": <queue>}
+
+
+
+# Leave session: Teacher -> Server
+
+{"msg": "leave_session", "ta_name": <ta_name>}
+
+# Leave session: Student -> Server
+
+{"msg": "leave_session", "group_name": <group_name>}
