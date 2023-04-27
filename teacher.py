@@ -7,7 +7,7 @@ from threading import Thread
 import json
 from stmpy import Machine, Driver
 import paho.mqtt.client as mqtt
-from utils import TOPIC, QUEUE_TOPIC, HELP_TOPIC, JOIN_TOPIC, PROGRESS_TOPIC
+from utils import TOPIC, QUEUE_TOPIC, HELP_TOPIC, JOIN_TOPIC, PROGRESS_TOPIC, UPDATE_TOPIC
 from stmpy import Driver, Machine
 from threading import Thread
 import paho.mqtt.client as mqtt
@@ -259,4 +259,7 @@ class Teacher:
 
     def end_session(self, b):
         """Called when End Session-button is pressed in lab_session_active"""
+        leave_session = {"msg": "leave_session", "ta_name": self.ta_name}
+        self.mqtt_client.publish(f"{TOPIC}/{self.session_id}/{UPDATE_TOPIC}", json.dumps(leave_session))
+
         self.stm.send("end_lab")
