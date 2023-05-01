@@ -40,7 +40,7 @@
 
 {"msg": "provide_help", "ta_name": <ta_name>, "group_name": <group_name>}
 
-# Provide queue update: Serer -> Server / Student
+# Provide queue update: Server -> Teacher / Student
 
 {"msg": "queue_update", "queue": <queue>}
 
@@ -53,3 +53,13 @@
 # Leave session: Student -> Server
 
 {"msg": "leave_session", "group_name": <group_name>}
+
+
+# Finish task: Student -> Server
+
+{"msg": "task_finished", "question": <question>, "group_name": <group_name>}
+
+# Provide progress update: Server -> Teacher
+
+{"msg": "progress_update", "progress": <progress>}
+
