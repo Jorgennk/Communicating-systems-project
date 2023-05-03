@@ -11,7 +11,8 @@ t1 = {'trigger':'join',
 
 t2 = {'trigger':'wrong_code', 
       'source':'wait', 
-      'target':'idle'}
+      'target':'idle',
+      'effect': 'restart'}
 
 t3 = {'trigger':'correct_code', 
       'source':'wait', 
@@ -41,8 +42,8 @@ t7 = {'trigger':'queue_request',
 
 t8 = {'trigger':'leave_lab', 
       'source':'lab_session_active', 
-      'target':'exit',
-      'effect': '__init__'}
+      'target':'idle',
+      'effect': 'restart'}
 
 
 # the states:

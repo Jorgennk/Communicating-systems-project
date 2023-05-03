@@ -72,7 +72,7 @@ class MQTT_Teacher_Client:
         self.client.unsubscribe(f"{TOPIC}/{JOIN_TOPIC}")
 
         self.client.subscribe(f"{TOPIC}/{self.teacher.session_id}/{QUEUE_TOPIC}")
-        self.client.subscribe(f"{TOPIC}/{self.teacher.session_id}/{HELP_TOPIC}")
+        # self.client.subscribe(f"{TOPIC}/{self.teacher.session_id}/{HELP_TOPIC}")
         self.client.subscribe(f"{TOPIC}/{self.teacher.session_id}/{PROGRESS_TOPIC}")
 
 

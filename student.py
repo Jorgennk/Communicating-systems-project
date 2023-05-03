@@ -54,15 +54,12 @@ class MQTT_Student_Client:
                 print("Sucsessfully subscribed to: "+ (f"{TOPIC}/{message['session_id']}/{UPDATE_TOPIC}"))
                 self.client.subscribe(f"{TOPIC}/{self.session_id}/{QUEUE_TOPIC}")
                 
-                                      
-
-        elif msg.topic == (f"{TOPIC}/{JOIN_TOPIC}"):
-            if message == "session_join_failed":
+            if message['msg'] == "session_join_failed":
                 print("Incorrect code, try again")
                 self.stm_driver.send("wrong_code", "student")
                 
                 
-        elif msg.topic == f"{TOPIC}/{self.session_id}/{QUEUE_TOPIC}":
+        if msg.topic == f"{TOPIC}/{self.session_id}/{QUEUE_TOPIC}":
             print("Receiving queue, passing on to state machine")
             self.state_machine.queue_message = message['queue']
             self.stm_driver.send("queue_request", "student")
@@ -145,14 +142,35 @@ class Student:
                   self.number_queue.value = "Not in queue"
             #ENABLE HELP
             else:
-                  for i in self.queue_message:
-                        if i == self.group_name_widget.value:
-                              break
-                        else:
-                              self.place += 1  
-                  Sondre_idiot_confirmed = str(self.place)             
-                  self.number_queue.value = Sondre_idiot_confirmed
+                for i in self.queue_message:
+                    if i == self.group_name_widget.value:
+                            break
+                    else:
+                            self.place += 1  
+                Sondre_idiot_confirmed = str(self.place)             
+                self.number_queue.value = Sondre_idiot_confirmed
             
+      def restart(self):
+            self.mqtt_client.subscribe(f"{TOPIC}/{JOIN_TOPIC}")
+            self.button_create = widgets.Button(description="Join Session")
+            self.button_create.on_click(self.on_button_join)
+            self.queue_message = []
+            self.session_id = ""
+            self.question = 1
+            # MIDLERTIDIG
+            self.total_questions = 5
+
+            # text field
+            self.stu_code = widgets.Text(value='', placeholder='', description='student code:', disabled=False)
+            self.code = self.stu_code.value
+            display(self.button_create, self.stu_code)
+
+            self.group_name_widget = widgets.Text(value='', placeholder='', description='Group name:', disabled=False)
+
+            self.group_name = self.group_name_widget.value
+
+            display(self.button_create, self.group_name_widget)
+            display()
       
       def publish(self):
             
