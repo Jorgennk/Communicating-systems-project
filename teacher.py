@@ -159,7 +159,6 @@ class Teacher:
         self.progress_field = None
 
 
-
     def __str__(self) -> str:
         return f"Session: {self.session_id}, TA-code: {self.ta_code}, Student-code: {self.student_code}"
 
