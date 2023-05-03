@@ -154,6 +154,10 @@ class Teacher:
         self.error = None
         self.queue: list[str] = []
         self.progress: dict = {}
+        
+        self.queue_field = None
+        self.progress_field = None
+
 
 
     def __str__(self) -> str:
@@ -173,7 +177,7 @@ class Teacher:
         create_session = {"msg": "create_session", "ta_name": self.ta_name_field.value}
         self.mqtt_client.publish(f"{TOPIC}/{JOIN_TOPIC}", json.dumps(create_session, indent=4))
         
-        self.stm.send("start_session")
+        self.stm.send("create_session")
 
     
 
@@ -187,7 +191,7 @@ class Teacher:
         join_session = {"msg": "join_session", "ta_code": self.ta_code_field.value, "ta_name": self.ta_name_field.value}
         self.mqtt_client.publish(f"{TOPIC}/{JOIN_TOPIC}", json.dumps(join_session, indent=4))
 
-        self.stm.send("start_session")
+        self.stm.send("join_session")
         
 
     def in_idle(self):
